@@ -6,13 +6,19 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using System.Collections.Generic;
 
 namespace DoStuffAndroid
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-
+        List<string> toDos = new List<string>()
+        {
+            "Work",
+            "Program",
+            "Profit"
+        };
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -23,6 +29,7 @@ namespace DoStuffAndroid
 
             FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
             fab.Click += FabOnClick;
+
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
