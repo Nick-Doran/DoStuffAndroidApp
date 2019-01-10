@@ -13,7 +13,8 @@ namespace DoStuffAndroid
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        List<string> toDos = new List<string>()
+        private ListView myListView;
+        readonly List<string> toDos = new List<string>()
         {
             "Work",
             "Program",
@@ -30,6 +31,12 @@ namespace DoStuffAndroid
             FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
             fab.Click += FabOnClick;
 
+            myListView = FindViewById<ListView>(Resource.Id.listView1);
+            ArrayAdapter<String> itemsAdapter =
+            new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, toDos);
+            myListView.Adapter = itemsAdapter;         //SetAdapter(itemsAdapter);
+            // myListView.SetAdapter(new ArrayAdapter<String>(this, R.layout.list_item, toDos));
+            //myListView.ListAdapter(new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, toDos));
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -51,10 +58,10 @@ namespace DoStuffAndroid
 
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
-            View view = (View) sender;
+            View view = (View)sender;
             Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
                 .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
         }
-	}
+    }
 }
 
